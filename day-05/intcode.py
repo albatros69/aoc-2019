@@ -50,7 +50,7 @@ class IntCode():
         """ Read input """
         modes = f"{modes:01d}"
         params = self.read_opcode(modes)
-        self.memory[params[0]] = self.inputs.pop()
+        self.memory[params[0]] = self.inputs.pop(0)
         return 2
 
     def opcode_04(self, modes):
