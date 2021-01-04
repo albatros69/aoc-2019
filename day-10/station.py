@@ -2,7 +2,6 @@
 
 import sys
 from collections import defaultdict
-from math import gcd
 
 lines = []
 for line in sys.stdin:
