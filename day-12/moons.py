@@ -74,11 +74,10 @@ for l in lines:
 
 periods=[]
 for axe in range(3):
-    already_seen=[]
     step=0
-
     pos_init=tuple(m.position[axe] for m in moons)
     vel_init=tuple(m.velocity[axe] for m in moons)
+
     while True:
         step+=1
         for m1,m2 in combinations(moons, 2):
