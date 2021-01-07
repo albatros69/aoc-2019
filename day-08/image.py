@@ -7,6 +7,8 @@ lines = []
 for line in sys.stdin:
     lines.append(line.rstrip('\n'))
 
+# col, row = 3, 2
+# col, row = 2, 2
 col, row = 25, 6
 layers = []
 layer = []
