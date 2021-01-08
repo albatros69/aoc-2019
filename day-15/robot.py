@@ -24,7 +24,7 @@ class Robot():
     droid=0,0
     ox_vent=None
     directions=((0,1),(0,-1),(-1,0),(1,0)) # N S W E
-    direction=3
+    direction=0
     intersections=None
 
     def __init__(self, line) -> None:
