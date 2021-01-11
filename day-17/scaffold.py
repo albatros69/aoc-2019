@@ -183,13 +183,12 @@ print("Alignements parameters:", sum(x*y for (x,y) in robot.list_intersections()
 # Part 2
 print("-- Part 2 --")
 main_routine, functions=robot.routines()
-print(main_routine, functions)
-# input=ascii_code(main_routine) + [10]
-# for f in functions.values():
-#     input+=ascii_code(f)+[10]
-# input+=ascii_code(('n', '\n',))
+input=ascii_code(main_routine) + [10]
+for f in functions.values():
+    input+=ascii_code(f)+[10]
+input+=ascii_code(('n', '\n',))
 
-# robot = Robot(lines[0])
-# robot.program.memory[0]=2 # we wake up the droid
-# robot.program.inputs = input
-# print("Dust quantity:", robot.run())
+robot = Robot(lines[0])
+robot.program.memory[0]=2 # we wake up the droid
+robot.program.inputs = input
+print("Dust quantity:", robot.run())
