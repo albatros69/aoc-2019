@@ -117,6 +117,7 @@ class Robot():
     def routines(self):
         stack=deque([State(position=self.droid, direction=self.direction, seen=set((self.droid,)), main_routine=[], functions={'A':[], 'B':[], 'C':[]}, prefix=[])])
         field=set((x,y) for (x,y) in self.area if self.area[x,y] in ('#', '^'))
+        intersections=set(self.list_intersections())
 
         while stack:
             state = stack.popleft()
@@ -137,6 +138,9 @@ class Robot():
                             if state.prefix==state.functions[f]:
                                 return state.main_routine+[f], state.functions
 
+                    elif new_pos in state.seen and new_pos not in intersections:
+                        continue
+
                     elif (self.area[new_pos]=='#') and dir!=rev(state.direction):
                         if dir==state.direction:
                             new_prefix=state.prefix[:]
@@ -152,7 +156,7 @@ class Robot():
                                     new_functions[f]=state.prefix[:]
                                     new_routine+=[f]
                                     new_prefix=transitions[state.direction+dir]+[1]
-                                    stack.append(State(new_pos, dir, state.seen|set((new_pos,)), new_routine, new_functions, new_prefix))
+                                    stack.appendleft(State(new_pos, dir, state.seen|set((new_pos,)), new_routine, new_functions, new_prefix))
                                     break
 
                                 elif state.prefix!=[] and state.functions[f]==state.prefix:
@@ -162,7 +166,7 @@ class Robot():
 
                             new_prefix=state.prefix[:]+transitions[state.direction+dir]+[1]
                             if len(ascii_code(new_prefix))<=20 and any(is_prefix(new_prefix, f) for f in state.functions.values()):
-                                stack.append(State(new_pos, dir, state.seen|set((new_pos,)), state.main_routine[:], deepcopy(state.functions), new_prefix))
+                                stack.appendleft(State(new_pos, dir, state.seen|set((new_pos,)), state.main_routine[:], deepcopy(state.functions), new_prefix))
 
         return None, None
 
@@ -179,12 +183,13 @@ print("Alignements parameters:", sum(x*y for (x,y) in robot.list_intersections()
 # Part 2
 print("-- Part 2 --")
 main_routine, functions=robot.routines()
-input=ascii_code(main_routine) + [10]
-for f in functions.values():
-    input+=ascii_code(f)+[10]
-input+=ascii_code(('n', '\n',))
+print(main_routine, functions)
+# input=ascii_code(main_routine) + [10]
+# for f in functions.values():
+#     input+=ascii_code(f)+[10]
+# input+=ascii_code(('n', '\n',))
 
-robot = Robot(lines[0])
-robot.program.memory[0]=2 # we wake up the droid
-robot.program.inputs = input
-print("Dust quantity:", robot.run())
+# robot = Robot(lines[0])
+# robot.program.memory[0]=2 # we wake up the droid
+# robot.program.inputs = input
+# print("Dust quantity:", robot.run())
