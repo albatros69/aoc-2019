@@ -31,7 +31,6 @@ class Robot():
         self.program = IntCode(line.split(','), inputs=[self.direction+1])
         self.area = defaultdict(lambda: ' ')
         self.intersections=[self.direction]
-        self.cache=dict()
 
     def handle_output(self, output):
         """0: The repair droid hit a wall. Its position has not changed.
