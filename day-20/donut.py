@@ -21,7 +21,6 @@ class Donut():
     exit=None
     directions=((0,1),(0,-1),(-1,0),(1,0),)
     tunnels=None
-    direction=0
     min_x,min_y,max_x,max_y=(0,0,0,0)
 
     def __init__(self, lines) -> None:
