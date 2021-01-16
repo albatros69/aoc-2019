@@ -47,7 +47,7 @@ class Labyrinth():
         self.paths=dict()
 
     def optimal_path_to_keys(self, source):
-        """ Optimal path to destination, with a list of doors crossed and gathered keys along the path """
+        """ Optimal path to destination, with a list of doors crossed """
         stack=[(0, source, (0,0), frozenset(), )]
 
         seen = set((source, ))
