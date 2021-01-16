@@ -5,7 +5,6 @@ from itertools import combinations
 
 with open('input') as f:
     lines = list(f)
-    last_outputs=None
 
 def ascii_code(routine):
     return list(ord(c) for c in map(str, routine))
@@ -16,12 +15,12 @@ class Robot():
     waiting_input=False
     prompt='Command?'
     list_cmds=None
+    last_outputs=None
 
     def __init__(self, line, input) -> None:
         self.program = IntCode(line.split(','), inputs=input)
         self.last_outputs=''
         self.list_cmds=[]
-
 
     def handle_output(self):
         if self.program.outputs:
@@ -58,7 +57,10 @@ class Robot():
             print(''.join( self.area[x,y] for x in range(self.width)))
 
 
-CMDS = ['north', 'north', 'take mutex', 'east', 'take tambourine', 'south', 'south', 'north', 'north', 'east', 'west', 'west', 'south', 'south', 'west', 'west', 'take loom', 'east', 'east', 'north', 'west', 'take antenna', 'south', 'take hologram', 'west', 'take astronaut ice cream', 'east', 'south', 'take mug', 'north', 'north', 'north', 'north', 'north', 'take space heater', 'north', 'east', 'east' ]
+CMDS = ['north', 'north', 'take mutex', 'east', 'take tambourine', 'south', 'south', 'north', 'north',
+    'east', 'west', 'west', 'south', 'south', 'west', 'west', 'take loom', 'east', 'east', 'north',
+    'west', 'take antenna', 'south', 'take hologram', 'west', 'take astronaut ice cream', 'east',
+    'south', 'take mug', 'north', 'north', 'north', 'north', 'north', 'take space heater', 'north', 'east', 'east' ]
 
 ITEMS = [ 'mutex', 'loom', 'tambourine', 'hologram', 'space heater', 'antenna', 'astronaut ice cream', 'mug', ]
 
